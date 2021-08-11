@@ -9,7 +9,7 @@ chkpts/
 *.pth
 *.csv
 *.json
-*.txt
+# *.txt
 *.pt
 
 # Byte-compiled / optimized / DLL files
