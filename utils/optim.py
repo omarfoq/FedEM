@@ -133,6 +133,7 @@ class ProxSGD(Optimizer):
 def get_optimizer(optimizer_name, model, lr_initial, mu=0.):
     """
     Gets torch.optim.Optimizer given an optimizer name, a model and learning rate
+
     :param optimizer_name: possible are adam and sgd
     :type optimizer_name: str
     :param model: model to be optimized
@@ -142,6 +143,7 @@ def get_optimizer(optimizer_name, model, lr_initial, mu=0.):
     :param mu: proximal term weight; default=0.
     :type mu: float
     :return: torch.optim.Optimizer
+
     """
 
     if optimizer_name == "adam":
@@ -174,6 +176,7 @@ def get_optimizer(optimizer_name, model, lr_initial, mu=0.):
 def get_lr_scheduler(optimizer, scheduler_name, n_rounds=None):
     """
     Gets torch.optim.lr_scheduler given an lr_scheduler name and an optimizer
+
     :param optimizer:
     :type optimizer: torch.optim.Optimizer
     :param scheduler_name: possible are
@@ -181,6 +184,7 @@ def get_lr_scheduler(optimizer, scheduler_name, n_rounds=None):
     :param n_rounds: number of training rounds, only used if `scheduler_name == multi_step`
     :type n_rounds: int
     :return: torch.optim.lr_scheduler
+
     """
 
     if scheduler_name == "sqrt":

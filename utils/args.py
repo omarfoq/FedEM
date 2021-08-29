@@ -124,7 +124,7 @@ def parse_args(args_list=None):
     parser.add_argument(
         "--lr_scheduler",
         help='learning rate decay scheme to be used;'
-             ' possible are "sqrt", "linear", "cosine_annealing" and "constant" (no learning rate decay);'
+             ' possible are "sqrt", "linear", "cosine_annealing", "multi_step" and "constant" (no learning rate decay);'
              'default is "constant"',
         type=str,
         default="constant"
