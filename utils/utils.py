@@ -20,8 +20,10 @@ from tqdm import tqdm
 def get_data_dir(experiment_name):
     """
     returns a string representing the path where to find the datafile corresponding to the experiment
+
     :param experiment_name: name of the experiment
     :return: str
+
     """
     data_dir = os.path.join("data", experiment_name, "all_data")
 
@@ -55,6 +57,7 @@ def get_learner(
     :param n_rounds: number of training rounds, only used if `scheduler_name == multi_step`, default is None;
     :param seed:
     :return: Learner
+
     """
     torch.manual_seed(seed)
 
@@ -172,6 +175,7 @@ def get_learners_ensemble(
     :param n_rounds: number of training rounds, only used if `scheduler_name == multi_step`, default is None;
     :param seed:
     :return: LearnersEnsemble
+
     """
     learners = [
         get_learner(
@@ -200,6 +204,7 @@ def get_loaders(type_, root_path, batch_size, is_validation):
     constructs lists of `torch.utils.DataLoader` object from the given files in `root_path`;
      corresponding to `train_iterator`, `val_iterator` and `test_iterator`;
      `val_iterator` iterates on the same dataset as `train_iterator`, the difference is only in drop_last
+
     :param type_: type of the dataset;
     :param root_path: path to the data folder
     :param batch_size:
@@ -207,6 +212,7 @@ def get_loaders(type_, root_path, batch_size, is_validation):
     :return:
         train_iterator, val_iterator, test_iterator
         (List[torch.utils.DataLoader], List[torch.utils.DataLoader], List[torch.utils.DataLoader])
+
     """
     if type_ == "cifar10":
         inputs, targets = get_cifar10()
@@ -267,6 +273,7 @@ def get_loaders(type_, root_path, batch_size, is_validation):
 def get_loader(type_, path, batch_size, train, inputs=None, targets=None):
     """
     constructs a torch.utils.DataLoader object from the given path
+
     :param type_: type of the dataset; possible are `tabular`, `images` and `text`
     :param path: path to the data file
     :param batch_size:
@@ -274,6 +281,7 @@ def get_loader(type_, path, batch_size, train, inputs=None, targets=None):
     :param inputs: tensor storing the input data; only used with `cifar10`, `cifar100` and `emnist`; default is None
     :param targets: tensor storing the labels; only used with `cifar10`, `cifar100` and `emnist`; default is None
     :return: torch.utils.DataLoader
+
     """
     if type_ == "tabular":
         dataset = TabularDataset(path)
@@ -323,6 +331,7 @@ def get_client(
     :param tune_locally
 
     :return:
+
     """
     if client_type == "mixture":
         return MixtureClient(
@@ -512,7 +521,9 @@ def get_aggregator(
             seed=seed
         )
     else:
-        raise NotImplementedError("{aggregator_type} is not a possible aggregator type."
-                                  " Available are: `no_communication`, `centralized`,"
-                                  " `personalized`, `clustered`, `fednova`, `AFL`,"
-                                  " `FFL` and `decentralized`.")
+        raise NotImplementedError(
+            "{aggregator_type} is not a possible aggregator type."
+            " Available are: `no_communication`, `centralized`,"
+            " `personalized`, `clustered`, `fednova`, `AFL`,"
+            " `FFL` and `decentralized`."
+        )

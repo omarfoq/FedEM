@@ -58,10 +58,11 @@ COLORS = {
 
 def make_plot(path_, tag_, save_path):
     """
-    :param path_: path of the logs directory, `path_` should contain sub-directories corresponding to methods (e.g., FedEM)
-    each sub-directory must contain a single tf events file.
+    :param path_: path of the logs directory, `path_` should contain sub-directories corresponding to methods
+        each sub-directory must contain a single tf events file.
     :param tag_: the tag to be plotted, possible are "Train/Loss", "Train/Metric", "Test/Loss", "Test/Metric"
     :param save_path: path to save the resulting plot
+
     """
     fig, ax = plt.subplots(figsize=(24, 20))
 
