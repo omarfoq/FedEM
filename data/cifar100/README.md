@@ -56,13 +56,17 @@ We als o provide some additional options to split the dataset
   default=`2`
 - ```n_components```: if neither  ``--pachinko_allocation_split`` nor 
   `--pathological_split` are selected,
-  the dataset is split as follow; 1) classes are grouped into `n_clusters`.2) for
+  the dataset is split as follows; 1) classes are grouped into `n_clusters`.2) for
   each cluster `c`,  samples are partitioned across clients using
   dirichlet distribution.
 - ```--val_frac```: fraction of validation set (from train set); default=`0.0`
   
 ## Paper Experiments
-In order to generate the data split for Table 2 (Full client participation), run
+
+### Full client participation (Table 2)
+
+In order to generate the data split for Table 2 (Full client participation) without
+validation set, run
 
 ```
 python generate_data.py \
@@ -75,6 +79,22 @@ python generate_data.py \
     --seed 12345    
 ```
 
+In order to include the validation set, run
+
+```
+python generate_data.py \
+    --n_tasks 100 \
+    --pachinko_allocation_split \
+    --alpha 0.4 \
+    --beta 10 \
+    --s_frac 1.0 \
+    --tr_frac 0.8 \
+    --val_frac 0.25 \
+    --seed 12345    
+```
+
+### Unseen clients (Table 3)
+
 In order to generate the data split for Table 3 (Unseen clients), run
 
 ```
@@ -85,6 +105,21 @@ python generate_data.py \
     --beta 10 \
     --s_frac 1.0 \
     --tr_frac 0.8 \
+    --test_tasks_frac 0.2 \
+    --seed 12345   
+```
+
+In order to include the validation set, run
+
+```
+python generate_data.py \
+    --n_tasks 100 \
+    --pachinko_allocation_split \
+    --alpha 0.4 \
+    --beta 10 \
+    --s_frac 1.0 \
+    --tr_frac 0.8 \
+    --val_frac 0.25 \
     --test_tasks_frac 0.2 \
     --seed 12345   
 ```

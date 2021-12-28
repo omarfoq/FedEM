@@ -20,21 +20,48 @@ First, run `./preprocess.sh`, then run `generate_data.py` with a choice of the f
 
 ## Paper Experiments
 
-In order to generate the data split for Table 2 (Full client participation), run
+### Full client participation (Table 2)
+
+In order to generate the data split for Table 2 (Full client participation) without
+validation set, run
 
 ```
 python generate_data.py \
-    --s_frac 0.2 \
+    --s_frac 0.15 \
     --tr_frac 0.8 \
     --seed 12345    
 ```
 
-In order to generate the data split for Table 3 (Unseen clients), run
+In order to include the validation set, run
 
 ```
 python generate_data.py \
-    --s_frac 0.2 \
+    --s_frac 0.15 \
     --tr_frac 0.8 \
+    --val_frac 0.25 \
+    --seed 12345    
+```
+
+### Unseen clients (Table 3)
+
+In order to generate the data split for Table 3 (Unseen clients) without
+validation set, run
+
+```
+python generate_data.py \
+    --s_frac 0.15 \
+    --tr_frac 0.8 \
+    --train_tasks_frac 0.8 \
+    --seed 12345
+```
+
+In order to include the validation set, run
+
+```
+python generate_data.py \
+    --s_frac 0.15 \
+    --tr_frac 0.8 \
+    --val_frac 0.25 \
     --train_tasks_frac 0.8 \
     --seed 12345
 ```

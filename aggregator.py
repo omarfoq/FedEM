@@ -332,7 +332,9 @@ class PersonalizedAggregator(CentralizedAggregator):
 
 
 class APFLAggregator(Aggregator):
-    """
+    r"""
+    Implements
+        `Adaptive Personalized Federated Learning`__(https://arxiv.org/abs/2003.13461)
 
     """
     def __init__(
@@ -361,7 +363,7 @@ class APFLAggregator(Aggregator):
             verbose=verbose,
             seed=seed
         )
-        assert self.n_clients == 2, "APFL requires two learners"
+        assert self.n_learners == 2, "APFL requires two learners"
 
         self.alpha = alpha
 

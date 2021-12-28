@@ -165,12 +165,12 @@ def parse_args(args_list=None):
         default=0
     )
     parser.add_argument(
-        "--logs_root",
-        help='root path to write logs; if not passed, it is set using arguments',
+        "--logs_dir",
+        help='directory to write logs; if not passed, it is set using arguments',
         default=argparse.SUPPRESS
     )
     parser.add_argument(
-        "--save_path",
+        "--save_dir",
         help='directory to save checkpoints once the training is over; if not specified checkpoints are not saved',
         default=argparse.SUPPRESS
     )

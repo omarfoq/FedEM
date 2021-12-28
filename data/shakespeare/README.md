@@ -22,7 +22,10 @@ First, Run `./get_data.sh`, then run `generate_data.py` with a choice of the fol
 
 ## Paper Experiments
 
-In order to generate the data split for Table 2 (Full client participation), run
+### Full client participation (Tale 2)
+
+In order to generate the data split for Table 2 (Full client participation) without
+validation set, run
 
 ```
 python generate_data.py \
@@ -31,6 +34,18 @@ python generate_data.py \
     --seed 12345    
 ```
 
+In order to include the validation set, run
+
+```
+python generate_data.py \
+    --s_frac 1.0 \
+    --tr_frac 0.8 \
+    --val_frac 0.25 \
+    --seed 12345    
+```
+
+### Unseen clients (Tale 3)
+
 In order to generate the data split for Table 3 (Unseen clients), run
 
 ```
@@ -38,5 +53,16 @@ python generate_data.py \
     --s_frac 1.0 \
     --tr_frac 0.8 \
     --train_tasks_frac 0.8 \
+    --seed 12345
+```
+
+In order to include the validation set, run
+
+```
+python generate_data.py \
+    --s_frac 1.0 \
+    --tr_frac 0.8 \
+    --train_tasks_frac 0.8 \
+    --val_frac 0.25 \
     --seed 12345
 ```

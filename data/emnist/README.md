@@ -38,27 +38,60 @@ We als o provide some additional options to split the dataset
   
 ## Paper Experiments
 
-In order to generate the data split for Table 2 (Full client participation), run
+### Full client participation (Table 2)
+
+In order to generate the data split for Table 2 (Full client participation)
+without validation set, run
 
 ```
 python generate_data.py \
     --n_tasks 100 \
     --n_components -1 \
     --alpha 0.4 \
-    --s_frac 0.2 \
+    --s_frac 0.1 \
     --tr_frac 0.8 \
     --seed 12345    
 ```
 
-In order to generate the data split for Table 3 (Unseen clients), run
+In order to include the validation set, run
 
 ```
 python generate_data.py \
     --n_tasks 100 \
     --n_components -1 \
     --alpha 0.4 \
-    --s_frac 0.2 \
+    --s_frac 0.1 \
     --tr_frac 0.8 \
+    --val_frac 0.25 \
+    --seed 12345    
+```
+
+### Unseen clients (Table 3)
+
+In order to generate the data split for Table 3 (Unseen clients) without
+validation set, run
+
+```
+python generate_data.py \
+    --n_tasks 100 \
+    --n_components -1 \
+    --alpha 0.4 \
+    --s_frac 0.1 \
+    --tr_frac 0.8 \
+    --test_tasks_frac 0.2 \
+    --seed 12345
+```
+
+In order to include the validation set, run
+
+```
+python generate_data.py \
+    --n_tasks 100 \
+    --n_components -1 \
+    --alpha 0.4 \
+    --s_frac 0.1 \
+    --tr_frac 0.8 \
+    --val_frac 0.25 \
     --test_tasks_frac 0.2 \
     --seed 12345
 ```

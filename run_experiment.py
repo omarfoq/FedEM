@@ -16,12 +16,12 @@ from utils.args import *
 from torch.utils.tensorboard import SummaryWriter
 
 
-def init_clients(args_, root_path, logs_root):
+def init_clients(args_, root_path, logs_dir):
     """
     initialize clients from data folders
     :param args_:
     :param root_path: path to directory containing data folders
-    :param logs_root: path to logs root
+    :param logs_dir: path to logs root
     :return: List[Client]
     """
     print("===> Building data iterators..")
@@ -56,7 +56,7 @@ def init_clients(args_, root_path, logs_root):
                 mu=args_.mu
             )
 
-        logs_path = os.path.join(logs_root, "task_{}".format(task_id))
+        logs_path = os.path.join(logs_dir, "task_{}".format(task_id))
         os.makedirs(logs_path, exist_ok=True)
         logger = SummaryWriter(logs_path)
 
@@ -82,30 +82,23 @@ def run_experiment(args_):
 
     data_dir = get_data_dir(args_.experiment)
 
-    if "logs_root" in args_:
-        logs_root = args_.logs_root
+    if "logs_dir" in args_:
+        logs_dir = args_.logs_dir
     else:
-        logs_root = os.path.join("logs", args_to_string(args_))
+        logs_dir = os.path.join("logs", args_to_string(args_))
 
     print("==> Clients initialization..")
-    clients = init_clients(
-        args_,
-        root_path=os.path.join(data_dir, "train"),
-        logs_root=os.path.join(logs_root, "train")
-    )
+    clients = init_clients(args_, root_path=os.path.join(data_dir, "train"), logs_dir=os.path.join(logs_dir, "train"))
 
     print("==> Test Clients initialization..")
-    test_clients = init_clients(
-        args_,
-        root_path=os.path.join(data_dir, "test"),
-        logs_root=os.path.join(logs_root, "test")
-    )
+    test_clients = init_clients(args_, root_path=os.path.join(data_dir, "test"),
+                                logs_dir=os.path.join(logs_dir, "test"))
 
-    logs_path = os.path.join(logs_root, "train", "global")
+    logs_path = os.path.join(logs_dir, "train", "global")
     os.makedirs(logs_path, exist_ok=True)
     global_train_logger = SummaryWriter(logs_path)
 
-    logs_path = os.path.join(logs_root, "test", "global")
+    logs_path = os.path.join(logs_dir, "test", "global")
     os.makedirs(logs_path, exist_ok=True)
     global_test_logger = SummaryWriter(logs_path)
 
@@ -159,11 +152,11 @@ def run_experiment(args_):
             pbar.update(1)
             current_round = aggregator.c_round
 
-    if "save_path" in args_:
-        save_root = os.path.join(args_.save_path)
+    if "save_dir" in args_:
+        save_dir = os.path.join(args_.save_dir)
 
-        os.makedirs(save_root, exist_ok=True)
-        aggregator.save_state(save_root)
+        os.makedirs(save_dir, exist_ok=True)
+        aggregator.save_state(save_dir)
 
 
 if __name__ == "__main__":
