@@ -218,3 +218,19 @@ We can also visualise the evolution of the train loss, train accuracy, test loss
 ![](https://user-images.githubusercontent.com/42912620/120851258-de39a800-c578-11eb-8d0e-13460e5d71cc.PNG)
 
 Similar plots can be built for other experiments using the `make_plot` function in `utils/plots.py`
+
+## Citation
+
+If you use our code or wish to refer to our results,
+please use the following BibTex entry:
+
+```
+@article{marfoq2021federated,
+  title={Federated multi-task learning under a mixture of distributions},
+  author={Marfoq, Othmane and Neglia, Giovanni and Bellet, Aur{\'e}lien and Kameni, Laetitia and Vidal, Richard},
+  journal={Advances in Neural Information Processing Systems},
+  volume={34},
+  pages={15434--15447},
+  year={2021}
+}
+```
