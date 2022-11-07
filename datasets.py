@@ -335,7 +335,7 @@ def get_emnist():
             root=emnist_path,
             split="byclass",
             download=True,
-            train=True
+            train=False
         )
 
     emnist_data =\
